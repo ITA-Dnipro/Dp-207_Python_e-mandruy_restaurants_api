@@ -6,7 +6,7 @@ class ScraperForRestaurants:
     """
     Main class for parsing info from donor-site tomato.ua
     """
-    def __init__(self, city, text_request='', page_number=1):
+    def __init__(self, city, page_number, text_request=''):
         self.city = city
         self.text_request = text_request
         self.page_number = page_number
@@ -19,6 +19,7 @@ class ScraperForRestaurants:
     def get_content(self, params=''):
         response = requests.get(self.URL, headers=self.HEADERS, params=params)
         soup = BeautifulSoup(response.text, 'html.parser')
+
         items = soup.find_all('div', class_='search-item__box')
         content = []
 
